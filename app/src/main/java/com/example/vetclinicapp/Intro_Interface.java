@@ -82,6 +82,7 @@ public class Intro_Interface extends AppCompatActivity {
 
         //Below is the persistence for offline capability
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+
         //This is for the google account sign in option
         signInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail().requestIdToken(getString(R.string.default_web_client_id)).build();
