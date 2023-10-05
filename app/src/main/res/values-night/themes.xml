@@ -1,0 +1,25 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Base.Theme.VetClinicApp" parent="Theme.Material3.Dark.NoActionBar">
+        <!-- Customize your dark theme here. -->
+        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+
+        <!--this is the main color - buttons and theme as far as I know-->
+        <item name="colorPrimary">#6c584c</item>
+
+        <!--this is for the text color of button-->
+        <item name="colorOnPrimary">@color/white</item>
+
+        <!--this is a test of text color-->
+        <item name="android:colorAccent">@color/white</item>
+
+        <!--this is for the cardview background-->
+        <item name="colorTertiary">@color/skin</item>
+
+        <!--this is for the background of the vet services-->
+        <item name="colorTertiaryContainer">#4DA98467</item>
+
+        <!--For the background of adding a pet-->
+        <item name="colorSecondary">#6C584C</item>
+    </style>
+</resources>

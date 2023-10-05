@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "946182137618",
+    "project_id": "vet-clinic-app-8203d",
+    "storage_bucket": "vet-clinic-app-8203d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:946182137618:android:df2672af0e64af9e8cb5cb",
+        "android_client_info": {
+          "package_name": "com.example.vetclinicapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "946182137618-j3gk4fgul7r4puk87iil928bjp9lkiba.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkF5-bPHh1DsHkY2Ho8sLzpyXrO7j6-is"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "946182137618-j3gk4fgul7r4puk87iil928bjp9lkiba.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

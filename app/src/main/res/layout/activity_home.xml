@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp"
+    tools:context=".interfaces.first_layer.Home">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/prof_pic"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="12dp"
+            android:src="@drawable/logo1"
+            app:civ_border_color="?android:attr/colorAccent"
+            app:civ_border_width="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/mukta_medium"
+            android:text="Welcome to AniCare:"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/prof_pic" />
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/mukta_extrabold"
+            android:text="Name will appear here"
+            android:textSize="22sp"
+            app:layout_constraintStart_toStartOf="@+id/textView3"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/mukta_bold"
+            android:text="Services"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/cardView"
+            app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/services_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/textView5"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            app:cardBackgroundColor="?attr/colorTertiary"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="15dp"
+            app:layout_constraintEnd_toEndOf="@+id/prof_pic"
+            app:layout_constraintStart_toStartOf="@+id/user_name"
+            app:layout_constraintTop_toBottomOf="@+id/user_name">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:fontFamily="@font/mukta_medium"
+                    android:gravity="center_horizontal"
+                    android:text="Get your paw babies in great shape with the aid of our services listed below. You may also enter their details below."
+                    android:textColor="?android:attr/textColorSecondary"
+                    app:layout_constraintEnd_toStartOf="@+id/imageView4"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginEnd="1dp"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/doggo" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <ImageButton
+            android:id="@+id/vet_button"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="?attr/colorTertiary"
+            android:scaleType="fitCenter"
+            app:layout_constraintStart_toStartOf="@+id/textView5"
+            app:layout_constraintTop_toBottomOf="@+id/textView5"
+            app:srcCompat="@drawable/doc"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <ImageButton
+            android:id="@+id/groom_button"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="32dp"
+            android:backgroundTint="?attr/colorTertiary"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toEndOf="@+id/vet_button"
+            app:layout_constraintTop_toTopOf="@+id/vet_button"
+            app:srcCompat="@drawable/grooming"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/mukta_medium"
+            android:text="Veterinary"
+            app:layout_constraintEnd_toEndOf="@+id/vet_button"
+            app:layout_constraintStart_toStartOf="@+id/vet_button"
+            app:layout_constraintTop_toBottomOf="@+id/vet_button" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/mukta_medium"
+            android:text="Grooming"
+            app:layout_constraintEnd_toEndOf="@+id/groom_button"
+            app:layout_constraintStart_toStartOf="@+id/groom_button"
+            app:layout_constraintTop_toTopOf="@+id/textView" />
+
+        <ImageButton
+            android:id="@+id/other_button"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="32dp"
+            android:backgroundTint="?attr/colorTertiary"
+            android:contentDescription="@string/app_name"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toEndOf="@+id/groom_button"
+            app:layout_constraintTop_toTopOf="@+id/groom_button"
+            app:srcCompat="@drawable/other" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/mukta_medium"
+            android:text="Other services"
+            app:layout_constraintEnd_toEndOf="@+id/other_button"
+            app:layout_constraintStart_toStartOf="@+id/other_button"
+            app:layout_constraintTop_toTopOf="@+id/textView2" />
+
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/mukta_bold"
+            android:text="Registered Pets"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/services_view"
+            app:layout_constraintTop_toBottomOf="@+id/services_view" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/pet_list"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            app:layout_constraintEnd_toEndOf="@+id/services_view"
+            app:layout_constraintStart_toStartOf="@+id/services_view"
+            app:layout_constraintTop_toBottomOf="@+id/add_a_pet" />
+
+        <Button
+            android:id="@+id/add_a_pet"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="24dp"
+            android:foreground="@drawable/add_pet"
+            android:text="Button"
+            app:layout_constraintBottom_toBottomOf="@+id/textView13"
+            app:layout_constraintEnd_toEndOf="@+id/services_view"
+            app:layout_constraintTop_toBottomOf="@+id/services_view" />
+
+        <Button
+            android:id="@+id/add_appoint"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="40dp"
+            android:text="Book an appointment"
+            app:layout_constraintEnd_toEndOf="@+id/pet_list"
+            app:layout_constraintStart_toStartOf="@+id/pet_list"
+            app:layout_constraintTop_toBottomOf="@+id/pet_list" />
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="40dp"
+            android:text="Cancel Appointment"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pet_list" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>

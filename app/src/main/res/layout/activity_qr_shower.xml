@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorPrimary"
+    tools:context=".interfaces.third_layer.QR_Shower">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/petQR"
+                android:layout_width="0dp"
+                android:layout_height="300dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="48dp"
+                android:fontFamily="@font/mukta_medium"
+                android:gravity="center"
+                android:text="Please save this screenshot, print, and put this on the tag of your pet. This will serve as your pet's digital ID that someone can use to see your pet's identity"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="@+id/petQR"
+                app:layout_constraintHorizontal_bias="0.507"
+                app:layout_constraintStart_toStartOf="@+id/petQR"
+                app:layout_constraintTop_toBottomOf="@+id/petQR" />
+
+            <Button
+                android:id="@+id/return_to_main"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:text="Return to Main Menu"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/textView12"
+                app:layout_constraintStart_toStartOf="@+id/textView12" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

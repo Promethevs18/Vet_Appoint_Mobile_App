@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <uses-permission-sdk-23 android:name="android.permission.INTERNET" />
+    <uses-permission-sdk-23 android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission-sdk-23 android:name="android.permission.CAMERA" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@drawable/logo1"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/logo1"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.VetClinicApp"
+        tools:targetApi="31">
+        <activity
+            android:name=".interfaces.third_layer.Appoint_Window"
+            android:exported="false" />
+        <activity
+            android:name=".interfaces.third_layer.QR_Shower"
+            android:exported="false" />
+        <activity
+            android:name=".interfaces.second_layer.Pet_Adder"
+            android:exported="false" />
+        <activity
+            android:name=".interfaces.second_layer.user_info"
+            android:exported="false" />
+        <activity
+            android:name=".interfaces.service_info"
+            android:exported="false" />
+        <activity
+            android:name=".interfaces.first_layer.Admin_act"
+            android:exported="false" />
+        <activity
+            android:name=".interfaces.second_layer.Found_Pet_Details"
+            android:exported="false" />
+        <activity
+            android:name=".interfaces.first_layer.Home"
+            android:exported="false" />
+        <activity
+            android:name=".Intro_Interface"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".interfaces.Capture"
+            android:screenOrientation="fullSensor"
+            android:stateNotNeeded="true" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+    </application>
+
+</manifest>

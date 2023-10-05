@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:contentDescription="@string/app_name"
+    tools:context=".interfaces.second_layer.Found_Pet_Details">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/pet_pic"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/logo2"
+            app:civ_border_color="?android:attr/colorAccent"
+            app:civ_border_width="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/pet_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/mukta_bold"
+            android:text="Pet's name will appear here"
+            android:textAllCaps="true"
+            android:textColor="?android:attr/textColorSecondary"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="@+id/pet_pic"
+            app:layout_constraintStart_toStartOf="@+id/pet_pic"
+            app:layout_constraintTop_toBottomOf="@+id/pet_pic" />
+
+        <TextView
+            android:id="@+id/pet_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/mukta_medium"
+            android:text="Address will appear here"
+            app:layout_constraintEnd_toEndOf="@+id/pet_name"
+            app:layout_constraintStart_toStartOf="@+id/pet_name"
+            app:layout_constraintTop_toBottomOf="@+id/pet_age" />
+
+        <TextView
+            android:id="@+id/pet_birth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Birthday of pet will appear here"
+            app:layout_constraintEnd_toEndOf="@+id/pet_name"
+            app:layout_constraintStart_toStartOf="@+id/pet_name"
+            app:layout_constraintTop_toBottomOf="@+id/pet_add" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/mukta_bold"
+            android:text="Owned by:"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pet_birth" />
+
+        <TextView
+            android:id="@+id/owner_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="12dp"
+            android:fontFamily="@font/mukta_medium"
+            android:text="Owner's name will appear here"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textView6"
+            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/mukta_bold"
+            android:text="Owner's email address:"
+            app:layout_constraintStart_toStartOf="@+id/owner_name"
+            app:layout_constraintTop_toBottomOf="@+id/owner_name" />
+
+        <TextView
+            android:id="@+id/owner_email"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/mukta_medium"
+            android:text="Owner's email will appear here"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toStartOf="@+id/contact_email"
+            app:layout_constraintStart_toStartOf="@+id/textView9"
+            app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/mukta_bold"
+            android:text="Owner's Phone number:"
+            app:layout_constraintStart_toStartOf="@+id/owner_email"
+            app:layout_constraintTop_toBottomOf="@+id/contact_email" />
+
+        <TextView
+            android:id="@+id/owner_phone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
+            android:text="Owner's phone will appear here:"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toStartOf="@+id/contact_phone"
+            app:layout_constraintStart_toStartOf="@+id/textView11"
+            app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+        <TextView
+            android:id="@+id/pet_age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/mukta_medium"
+            android:text="Age will appear here"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/pet_name"
+            app:layout_constraintStart_toStartOf="@+id/pet_name"
+            app:layout_constraintTop_toBottomOf="@+id/pet_name" />
+
+        <ImageButton
+            android:id="@+id/contact_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:backgroundTint="?attr/colorTertiary"
+            android:minHeight="48dp"
+            app:layout_constraintBottom_toBottomOf="@+id/owner_email"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView9"
+            app:srcCompat="@drawable/email_logo"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <ImageButton
+            android:id="@+id/contact_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="?attr/colorTertiary"
+            android:minHeight="48dp"
+            app:layout_constraintBottom_toBottomOf="@+id/owner_phone"
+            app:layout_constraintEnd_toEndOf="@+id/contact_email"
+            app:layout_constraintTop_toTopOf="@+id/textView11"
+            app:srcCompat="@drawable/phone_logo"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <ImageView
+            android:id="@+id/pet_qr"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="@+id/contact_phone"
+            app:layout_constraintStart_toStartOf="@+id/owner_phone"
+            app:layout_constraintTop_toBottomOf="@+id/owner_phone"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <Button
+            android:id="@+id/pet_delete"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="Delete Pet Information"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pet_qr" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

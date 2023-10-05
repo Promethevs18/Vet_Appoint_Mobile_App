@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSecondary"
+    tools:context=".interfaces.second_layer.Pet_Adder">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:padding="5dp"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/set_pet_image"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="14dp"
+                android:src="@drawable/upload_image"
+                app:civ_border_color="?android:attr/colorAccent"
+                app:civ_border_width="2dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/set_pet_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="4dp"
+                android:hint="Enter pet name:"
+                android:inputType="text"
+                android:minHeight="48dp"
+                android:textColor="?attr/colorOnPrimary"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/set_pet_image" />
+
+            <EditText
+                android:id="@+id/set_pet_add"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:ems="10"
+                android:hint="Write your pet's address here"
+                android:inputType="text"
+                android:minHeight="48dp"
+                android:textColor="?attr/colorOnPrimary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/set_pet_name"
+                app:layout_constraintTop_toBottomOf="@+id/set_pet_name" />
+
+            <EditText
+                android:id="@+id/set_pet_birth"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="4dp"
+                android:ems="10"
+                android:focusable="false"
+                android:hint="Press for pet's birthday"
+                android:inputType="date"
+                android:minHeight="48dp"
+                android:textColor="?attr/colorOnPrimary"
+                app:layout_constraintEnd_toStartOf="@+id/set_pet_age"
+                app:layout_constraintStart_toStartOf="@+id/set_pet_add"
+                app:layout_constraintTop_toBottomOf="@+id/set_pet_add"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <EditText
+                android:id="@+id/set_pet_age"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:hint="Age"
+                android:inputType="number"
+                android:minHeight="48dp"
+                android:textColor="?attr/colorOnPrimary"
+                app:layout_constraintEnd_toEndOf="@+id/set_pet_add"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toTopOf="@+id/set_pet_birth"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.6481013" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/mukta_bold"
+                android:text="Owner's Information"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/set_pet_age"
+                app:layout_constraintStart_toStartOf="@+id/set_pet_birth"
+                app:layout_constraintTop_toBottomOf="@+id/set_pet_birth" />
+
+            <TextView
+                android:id="@+id/owner_name_display"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/mukta_medium"
+                android:gravity="center"
+                android:text="Name will appear here"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/set_pet_age"
+                app:layout_constraintStart_toStartOf="@+id/set_pet_birth"
+                app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+            <TextView
+                android:id="@+id/owner_mail_display"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/mukta_medium"
+                android:gravity="center"
+                android:text="Email will appear here"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline3"
+                app:layout_constraintTop_toTopOf="@+id/owner_phone_display" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <TextView
+                android:id="@+id/owner_phone_display"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/mukta_medium"
+                android:gravity="center"
+                android:text="Phone number"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@+id/owner_mail_display"
+                app:layout_constraintStart_toStartOf="@+id/owner_name_display"
+                app:layout_constraintTop_toBottomOf="@+id/owner_name_display" />
+
+            <Button
+                android:id="@+id/upload_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Update Pet Information"
+                app:layout_constraintEnd_toEndOf="@+id/owner_mail_display"
+                app:layout_constraintStart_toStartOf="@+id/owner_name_display"
+                app:layout_constraintTop_toBottomOf="@+id/owner_phone_display" />
+
+            <EditText
+                android:id="@+id/set_breed"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Enter Breed"
+                android:inputType="text"
+                android:minHeight="48dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toTopOf="@+id/set_pet_name" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
