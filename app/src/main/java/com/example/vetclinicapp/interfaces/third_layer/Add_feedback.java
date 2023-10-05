@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RatingBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -26,8 +27,9 @@ import java.util.Objects;
 public class Add_feedback extends AppCompatActivity {
 
     //UI and other elements declaration
-    EditText subject, starCount, content;
+    EditText subject, content;
     Button submit_feed;
+    RatingBar stars;
 
     //Firebase Related
     DatabaseReference feedback;
@@ -43,8 +45,10 @@ public class Add_feedback extends AppCompatActivity {
 
         //EditTexts
         subject = findViewById(R.id.feed_subject);
-        starCount = findViewById(R.id.star_amount);
         content = findViewById(R.id.feed_content);
+
+        //RatingBar
+        stars = findViewById(R.id.stars);
 
         //Buttons
         submit_feed = findViewById(R.id.submit_feed);
@@ -65,7 +69,7 @@ public class Add_feedback extends AppCompatActivity {
 
                 HashMap<String, Object> mapa = new HashMap<>();
                 mapa.put("feed_sub", subject.getText().toString());
-                mapa.put("stars", starCount.getText().toString());
+                mapa.put("stars", stars.getRating());
                 mapa.put("feed_con", content.getText().toString());
 
                 feedback.child(Objects.requireNonNull(user.getDisplayName())).child("Feedback").updateChildren(mapa).addOnCompleteListener(new OnCompleteListener<Void>() {

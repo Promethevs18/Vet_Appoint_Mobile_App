@@ -24,7 +24,7 @@
             android:name=".interfaces.third_layer.Add_feedback"
             android:exported="false" />
         <activity
-            android:name=".Intro_Interface"
+            android:name=".interfaces.third_layer.Appoint_Window"
             android:exported="false" />
         <activity
             android:name=".interfaces.third_layer.QR_Shower"
@@ -48,7 +48,7 @@
             android:name=".interfaces.first_layer.Home"
             android:exported="false" />
         <activity
-            android:name=".interfaces.third_layer.Appoint_Window"
+            android:name=".Intro_Interface"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

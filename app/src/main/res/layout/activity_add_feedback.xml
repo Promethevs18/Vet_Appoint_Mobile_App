@@ -21,16 +21,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/star_amount"
-        app:layout_constraintStart_toEndOf="@+id/star_amount"
-        app:layout_constraintTop_toTopOf="@+id/star_amount"
-        app:srcCompat="@drawable/star" />
-
     <EditText
         android:id="@+id/feed_subject"
         android:layout_width="0dp"
@@ -45,31 +35,18 @@
         app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
     <EditText
-        android:id="@+id/star_amount"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="Rate from 1-5"
-        android:inputType="number"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline4"
-        app:layout_constraintStart_toStartOf="@+id/feed_subject"
-        app:layout_constraintTop_toBottomOf="@+id/feed_subject" />
-
-    <EditText
         android:id="@+id/feed_content"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:gravity="start|top"
         android:hint="What are your thoughts?"
         android:inputType="textMultiLine"
         app:layout_constraintBottom_toTopOf="@+id/submit_feed"
         app:layout_constraintEnd_toEndOf="@+id/feed_subject"
-        app:layout_constraintStart_toStartOf="@+id/star_amount"
-        app:layout_constraintTop_toBottomOf="@+id/star_amount" />
+        app:layout_constraintStart_toStartOf="@+id/feed_subject"
+        app:layout_constraintTop_toBottomOf="@+id/stars" />
 
     <Button
         android:id="@+id/submit_feed"
@@ -96,4 +73,13 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="183dp" />
+
+    <RatingBar
+        android:id="@+id/stars"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/feed_subject"
+        app:layout_constraintStart_toStartOf="@+id/feed_subject"
+        app:layout_constraintTop_toBottomOf="@+id/feed_subject" />
 </androidx.constraintlayout.widget.ConstraintLayout>
