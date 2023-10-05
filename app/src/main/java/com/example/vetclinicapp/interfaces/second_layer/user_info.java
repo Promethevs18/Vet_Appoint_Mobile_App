@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.vetclinicapp.Intro_Interface;
 import com.example.vetclinicapp.R;
+import com.example.vetclinicapp.interfaces.third_layer.Add_feedback;
 import com.example.vetclinicapp.models.pets_and_users_details_model;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -47,7 +48,7 @@ public class user_info extends AppCompatActivity {
     EditText phone_number;
 
     //buttons
-    Button update, save, out;
+    Button update, save, out, feedback;
     //userProfile
     CircleImageView user_image;
 
@@ -76,6 +77,7 @@ public class user_info extends AppCompatActivity {
         update = findViewById(R.id.update_data);
         save = findViewById(R.id.save_data);
         out = findViewById(R.id.log_out);
+        feedback = findViewById(R.id.give_feed);
 
         //CircleImageView
         user_image = findViewById(R.id.profile_picture);
@@ -184,6 +186,15 @@ public class user_info extends AppCompatActivity {
                     startActivity(gohome);
                     Toast.makeText(user_info.this, "You have successfully logged out", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        //eto naman for leaving feedback
+        feedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent goFeed = new Intent(user_info.this, Add_feedback.class);
+                startActivity(goFeed);
             }
         });
     }

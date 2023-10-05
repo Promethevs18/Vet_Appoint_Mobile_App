@@ -295,27 +295,37 @@ public class Appoint_Window extends AppCompatActivity {
                 booking_map.put("imageUrl", Objects.requireNonNull(current_user.getPhotoUrl()).toString());
                 booking_map.put("address", address);
                 booking_map.put("contact_num", contact_num);
+
                 ownerRef.child(Objects.requireNonNull(current_user.getDisplayName())).child("Booking").child("sched_date").setValue(date.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
+                            //this is to book an appointment sa booking node
                             booking_ref.child(date.getText().toString()).child(Objects.requireNonNull(current_user.getDisplayName())).updateChildren(booking_map).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
-                                        pd.dismiss();
-                                        AlertDialog.Builder build = new AlertDialog.Builder(Appoint_Window.this);
-                                        build.setTitle("Appointment Confirmed!");
-                                        build.setMessage("Your appointment has been confirmed. Click proceed to return to main menu");
-                                        build.setPositiveButton("Proceed", new DialogInterface.OnClickListener() {
+                                        //this is to book into the previous bookings section
+                                        ownerRef.child(Objects.requireNonNull(current_user.getDisplayName())).child("Previous Bookings").child(date.getText().toString()).updateChildren(booking_map).addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
-                                            public void onClick(DialogInterface dialogInterface, int i) {
-                                                Intent goHome = new Intent(Appoint_Window.this, Home.class);
-                                                startActivity(goHome);
-                                                Appoint_Window.this.finish();
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful()) {
+                                                    pd.dismiss();
+                                                    AlertDialog.Builder build = new AlertDialog.Builder(Appoint_Window.this);
+                                                    build.setTitle("Appointment Confirmed!");
+                                                    build.setMessage("Your appointment has been confirmed. Click proceed to return to main menu");
+                                                    build.setPositiveButton("Proceed", new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                                            Intent goHome = new Intent(Appoint_Window.this, Home.class);
+                                                            startActivity(goHome);
+                                                            Appoint_Window.this.finish();
+                                                        }
+                                                    });
+                                                    build.show();
+                                                }
                                             }
                                         });
-                                        build.show();
                                     }
                                 }
                             });
