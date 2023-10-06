@@ -64,6 +64,7 @@ public class Pet_Adder extends AppCompatActivity {
     DatePickerDialog datePicker;
     //Strings
     String selectedDate, ageDate, imageLink;
+
     //Firebase Database Reference
     DatabaseReference putData;
     DatabaseReference getData;
@@ -172,46 +173,60 @@ public class Pet_Adder extends AppCompatActivity {
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //ProgressDialog to show the loading eme
-                pd = new ProgressDialog(Pet_Adder.this);
-                pd.setTitle("Uploading information");
-                pd.setMessage("Uploading information to the database. Please wait...");
-                pd.show();
 
-                //we are using a hashmap as our data container
-                HashMap<String, Object> mapa = new HashMap<>();
-                mapa.put("petName", setName.getText().toString());
-                mapa.put("petAddress", setAddress.getText().toString());
-                mapa.put("petBirth", setBirthday.getText().toString());
-                mapa.put("petAge", setAge.getText().toString());
-                mapa.put("petImage", imageLink);
-                mapa.put("ownerContact", ownerPhone.getText().toString());
-                mapa.put("ownerName", ownerName.getText().toString());
-                mapa.put("ownerEmail", ownerEmail.getText().toString());
-                mapa.put("breed", setBreed.getText().toString());
+                //if condition para i-check kung lahat ng info ay meron
 
-                //passing the data to our realtime database, and pushing a condition that will check if it is passed successfully
-                putData.child(Objects.requireNonNull(user.getDisplayName())).child(setName.getText().toString()).updateChildren(mapa).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            pd.dismiss();
-                            AlertDialog.Builder build = new AlertDialog.Builder(Pet_Adder.this);
-                            build.setTitle("Information Saved");
-                            build.setMessage("Pet information has been saved");
-                            build.setPositiveButton("Proceed", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    Intent goQR = new Intent(Pet_Adder.this, QR_Shower.class);
-                                    goQR.putExtra("pathOfPet", Objects.requireNonNull(user.getDisplayName()) + "/" + setName.getText().toString());
-                                    startActivity(goQR);
-                                    Pet_Adder.this.finish();
-                                }
-                            });
-                            build.show();
+                if (setName.getText().toString().isEmpty() || setAddress.getText().toString().isEmpty() ||
+                        setBreed.getText().toString().isEmpty() || selectedDate.isEmpty() || ageDate.isEmpty() ||
+                        imageLink.isEmpty()) {
+                    AlertDialog.Builder gawa = new AlertDialog.Builder(Pet_Adder.this);
+                    gawa.setTitle("Some fields are empty");
+                    gawa.setMessage("All pet information are required. Make sure you have uploaded a profile picture by clicking on the icon above, or provided data in the fields required");
+                    gawa.setIcon(R.drawable.error);
+                    gawa.setCancelable(true);
+                    gawa.show();
+                } else {
+                    //ProgressDialog to show the loading eme
+                    pd = new ProgressDialog(Pet_Adder.this);
+                    pd.setTitle("Uploading information");
+                    pd.setMessage("Uploading information to the database. Please wait...");
+                    pd.show();
+
+                    //we are using a hashmap as our data container
+                    HashMap<String, Object> mapa = new HashMap<>();
+                    mapa.put("petName", setName.getText().toString());
+                    mapa.put("petAddress", setAddress.getText().toString());
+                    mapa.put("petBirth", setBirthday.getText().toString());
+                    mapa.put("petAge", setAge.getText().toString());
+                    mapa.put("petImage", imageLink);
+                    mapa.put("ownerContact", ownerPhone.getText().toString());
+                    mapa.put("ownerName", ownerName.getText().toString());
+                    mapa.put("ownerEmail", ownerEmail.getText().toString());
+                    mapa.put("breed", setBreed.getText().toString());
+
+                    //passing the data to our realtime database, and pushing a condition that will check if it is passed successfully
+                    putData.child(Objects.requireNonNull(user.getDisplayName())).child(setName.getText().toString()).updateChildren(mapa).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                pd.dismiss();
+                                AlertDialog.Builder build = new AlertDialog.Builder(Pet_Adder.this);
+                                build.setTitle("Information Saved");
+                                build.setMessage("Pet information has been saved");
+                                build.setPositiveButton("Proceed", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        Intent goQR = new Intent(Pet_Adder.this, QR_Shower.class);
+                                        goQR.putExtra("pathOfPet", Objects.requireNonNull(user.getDisplayName()) + "/" + setName.getText().toString());
+                                        startActivity(goQR);
+                                        Pet_Adder.this.finish();
+                                    }
+                                });
+                                build.show();
+                            }
                         }
-                    }
-                });
+                    });
+                }
             }
         });
 
@@ -231,7 +246,7 @@ public class Pet_Adder extends AppCompatActivity {
     //this is an age calculator
     private void ageCalculator(LocalDate localDate) {
         LocalDate currentDate = LocalDate.now();
-        if (localDate != null && currentDate != null) {
+        if (localDate != null || currentDate != null) {
             setAge.setText(String.format(Locale.getDefault(), "%d years old", Period.between(localDate, currentDate).getYears()));
         } else {
             setAge.setText("0");
@@ -260,7 +275,7 @@ public class Pet_Adder extends AppCompatActivity {
         // if request code is PICK_IMAGE_REQUEST and
         // resultCode is RESULT_OK
         // then set image in the image view
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+        if (requestCode == PICK_IMAGE_REQUEST || resultCode == RESULT_OK || data != null || data.getData() != null) {
             // Get the Uri of data
             filePath = data.getData();
             try {
