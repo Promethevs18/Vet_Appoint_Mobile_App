@@ -246,6 +246,7 @@ public class Appoint_Window extends AppCompatActivity {
                         date.setText(dateFormat.format(calendar.getTime()));
                     }
                 }, year, month, day);
+                datePickerDialog.getDatePicker().setMinDate(calendar.getTimeInMillis());
                 datePickerDialog.show();
             }
         });
@@ -291,12 +292,15 @@ public class Appoint_Window extends AppCompatActivity {
                 booking_map.put("services", serbisyo);
                 booking_map.put("sched_date", date.getText().toString());
                 booking_map.put("sched_time", time.getText().toString());
-                booking_map.put("owner", current_user.getDisplayName());
+                booking_map.put("ownerName", current_user.getDisplayName());
                 booking_map.put("imageUrl", Objects.requireNonNull(current_user.getPhotoUrl()).toString());
                 booking_map.put("address", address);
                 booking_map.put("contact_num", contact_num);
 
-                ownerRef.child(Objects.requireNonNull(current_user.getDisplayName())).child("Booking").child("sched_date").setValue(date.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                HashMap<String, Object> bookDeets = new HashMap<>();
+                bookDeets.put("sched_date", date.getText().toString());
+                bookDeets.put("sched_time", time.getText().toString());
+                ownerRef.child(Objects.requireNonNull(current_user.getDisplayName())).child("Booking").updateChildren(bookDeets).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
