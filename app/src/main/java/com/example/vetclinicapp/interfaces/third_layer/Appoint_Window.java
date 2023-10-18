@@ -3,9 +3,13 @@ package com.example.vetclinicapp.interfaces.third_layer;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -35,9 +39,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -310,6 +316,7 @@ public class Appoint_Window extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
                                         //this is to book into the previous bookings section
+                                        createCalendarEvent();
                                         ownerRef.child(Objects.requireNonNull(current_user.getDisplayName())).child("Previous Bookings").child(date.getText().toString()).updateChildren(booking_map).addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
@@ -317,7 +324,7 @@ public class Appoint_Window extends AppCompatActivity {
                                                     pd.dismiss();
                                                     AlertDialog.Builder build = new AlertDialog.Builder(Appoint_Window.this);
                                                     build.setTitle("Appointment Confirmed!");
-                                                    build.setMessage("Your appointment has been confirmed. Click proceed to return to main menu");
+                                                    build.setMessage("Your appointment has been confirmed, and details have also been posted on your device's calendar\n. Click proceed to return to main menu");
                                                     build.setPositiveButton("Proceed", new DialogInterface.OnClickListener() {
                                                         @Override
                                                         public void onClick(DialogInterface dialogInterface, int i) {
@@ -338,6 +345,55 @@ public class Appoint_Window extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    private void createCalendarEvent() {
+        ContentValues values = new ContentValues();
+        String dateAndTime = date.getText().toString() + " " + time.getText().toString();
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy HH:mm", Locale.getDefault());
+        try {
+            Date date = dateFormat.parse(dateAndTime);
+            values.put(CalendarContract.Events.DTSTART, Objects.requireNonNull(date).getTime());
+            values.put(CalendarContract.Events.TITLE, "Pets appointment at AniCare Vet Clinic");
+            values.put(CalendarContract.Events.DESCRIPTION, "You have an upcoming appointment with AniCare Vet Clinic on this particular date");
+            values.put(CalendarContract.Events.CALENDAR_ID, getDefaultCalendar());
+            values.put(CalendarContract.Events.EVENT_TIMEZONE, "Asia/Manila");
+
+            Calendar kalendaryo = Calendar.getInstance();
+            kalendaryo.setTime(date);
+            kalendaryo.add(Calendar.HOUR, 1);
+            Date end = kalendaryo.getTime();
+
+            values.put(CalendarContract.Events.DTEND, end.getTime());
+
+
+            Uri calUri = CalendarContract.Events.CONTENT_URI;
+            Uri eventUri = getContentResolver().insert(calUri, values);
+
+        } catch (ParseException e) {
+            Toast.makeText(this, "Error occurred due to: \n" + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private Long getDefaultCalendar() {
+        long calendarId = -1;
+        String[] project = {CalendarContract.Calendars._ID};
+        String selection = CalendarContract.Calendars.IS_PRIMARY + "= 1";
+        Cursor cursor = getContentResolver().query(
+                CalendarContract.Calendars.CONTENT_URI,
+                project,
+                selection,
+                null,
+                null
+        );
+
+        if (cursor != null && cursor.moveToFirst()) {
+            int index = cursor.getColumnIndex(CalendarContract.Calendars._ID);
+            calendarId = cursor.getLong(index);
+            cursor.close();
+        }
+        return calendarId;
     }
 
     public void Show_Service(String chosen) {

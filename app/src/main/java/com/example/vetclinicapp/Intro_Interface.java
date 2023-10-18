@@ -1,7 +1,9 @@
 package com.example.vetclinicapp;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +13,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.example.vetclinicapp.interfaces.Capture;
 import com.example.vetclinicapp.interfaces.first_layer.Home;
@@ -170,5 +173,16 @@ public class Intro_Interface extends AppCompatActivity {
                         Toast.makeText(Intro_Interface.this, "We cannot proceed with the request due to: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        ActivityCompat.requestPermissions(Intro_Interface.this, new String[]{
+                android.Manifest.permission.READ_CALENDAR, Manifest.permission.WRITE_CALENDAR
+        }, PackageManager.PERMISSION_GRANTED);
+
+
     }
 }
