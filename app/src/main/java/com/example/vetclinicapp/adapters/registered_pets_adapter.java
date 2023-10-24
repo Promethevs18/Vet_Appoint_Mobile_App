@@ -32,7 +32,7 @@ public class registered_pets_adapter extends FirebaseRecyclerAdapter<pets_and_us
             @Override
             public void onClick(View view) {
                 pets_and_users_details_model get_pet = getSnapshots().get(holder.getAbsoluteAdapterPosition());
-                String pet_path = get_pet.getOwnerName() + "/" + get_pet.getPetName();
+                String pet_path = get_pet.getOwner() + "/" + get_pet.getPetName();
                 Intent goto_pet = new Intent(holder.itemView.getContext(), Found_Pet_Details.class);
                 goto_pet.putExtra("Pet Name", pet_path);
                 goto_pet.putExtra("Listed", true);

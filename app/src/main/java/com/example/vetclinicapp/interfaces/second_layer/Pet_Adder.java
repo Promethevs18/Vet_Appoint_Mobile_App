@@ -157,7 +157,7 @@ public class Pet_Adder extends AppCompatActivity {
                 //gagawa tayo ng if, para i check if nag-exist. Nang sa ganon, di mag crash ang app, if wala syang mahanap
                 if (snapshot.exists()) {
                     pets_and_users_details_model detailsModel = snapshot.getValue(pets_and_users_details_model.class);
-                    ownerName.setText(Objects.requireNonNull(detailsModel).getOwnerName());
+                    ownerName.setText(Objects.requireNonNull(detailsModel).getOwner());
                     ownerEmail.setText(Objects.requireNonNull(detailsModel).getOwnerEmail());
                     ownerPhone.setText(Objects.requireNonNull(detailsModel).getOwnerContact());
                 }

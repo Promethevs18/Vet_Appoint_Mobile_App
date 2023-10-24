@@ -1,31 +1,22 @@
 package com.example.vetclinicapp.models;
 
 public class pets_and_users_details_model {
-    String ownerContact, ownerEmail, ownerName, petAddress, petAge,
+    String ownerContact, ownerEmail, owner, petAddress, petAge,
             petBirth, petImage, petName, breed, sched_date;
 
     public pets_and_users_details_model() {
     }
 
-
-    public pets_and_users_details_model(String ownerContact, String ownerEmail, String ownerName, String petAddress, String petAge, String petBirth, String petImage, String petName, String breed, String sched_date) {
+    public pets_and_users_details_model(String ownerContact, String ownerEmail, String owner, String petAddress, String petAge, String petBirth, String petImage, String petName, String breed, String sched_date) {
         this.ownerContact = ownerContact;
         this.ownerEmail = ownerEmail;
-        this.ownerName = ownerName;
+        this.owner = owner;
         this.petAddress = petAddress;
         this.petAge = petAge;
         this.petBirth = petBirth;
         this.petImage = petImage;
         this.petName = petName;
         this.breed = breed;
-        this.sched_date = sched_date;
-    }
-
-    public String getSched_date() {
-        return sched_date;
-    }
-
-    public void setSched_date(String sched_date) {
         this.sched_date = sched_date;
     }
 
@@ -45,12 +36,12 @@ public class pets_and_users_details_model {
         this.ownerEmail = ownerEmail;
     }
 
-    public String getOwnerName() {
-        return ownerName;
+    public String getOwner() {
+        return owner;
     }
 
-    public void setOwnerName(String ownerName) {
-        this.ownerName = ownerName;
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 
     public String getPetAddress() {
@@ -100,4 +91,13 @@ public class pets_and_users_details_model {
     public void setBreed(String breed) {
         this.breed = breed;
     }
+
+    public String getSched_date() {
+        return sched_date;
+    }
+
+    public void setSched_date(String sched_date) {
+        this.sched_date = sched_date;
+    }
 }
+

@@ -132,7 +132,7 @@ public class Found_Pet_Details extends AppCompatActivity {
                     petAddress.setText(Objects.requireNonNull(petModel.getPetAddress()));
                     petBirth.setText(Objects.requireNonNull(petModel.getPetBirth()));
                     ownerEmail.setText(Objects.requireNonNull(petModel.getOwnerEmail()));
-                    ownerName.setText(Objects.requireNonNull(petModel.getOwnerName()));
+                    ownerName.setText(Objects.requireNonNull(petModel.getOwner()));
                     ownerPhone.setText(Objects.requireNonNull(petModel.getOwnerContact()));
 
                     //using Picasso to load petProfile
