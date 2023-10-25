@@ -2,6 +2,7 @@
 <resources>
     <array name="preloaded_fonts" translatable="false">
         <item>@font/galindo</item>
+        <item>@font/mukta</item>
         <item>@font/mukta_extrabold</item>
     </array>
 </resources>

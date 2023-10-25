@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vetclinicapp.R;
+import com.example.vetclinicapp.adapters.previous_bookings_adapter;
 import com.example.vetclinicapp.adapters.registered_pets_adapter;
 import com.example.vetclinicapp.adapters.veterinary_services_adapter;
 import com.example.vetclinicapp.interfaces.second_layer.Pet_Adder;
@@ -49,11 +50,12 @@ public class Home extends AppCompatActivity {
     CircleImageView profile_pic;
 
     //RecyclerView
-    RecyclerView services, pets;
+    RecyclerView services, pets, previous;
 
     //FIREBASE RECYCLERS
     FirebaseRecyclerOptions<veterinary_service_model> vet_queue;
     FirebaseRecyclerOptions<pets_and_users_details_model> pet_queue;
+    FirebaseRecyclerOptions<pets_and_users_details_model> prev_queue;
 
     //FIREBASE DATABASE
     DatabaseReference databaseReference, petReference, ownerReference, bookings;
@@ -86,6 +88,7 @@ public class Home extends AppCompatActivity {
         //RecyclerView
         services = findViewById(R.id.services_view);
         pets = findViewById(R.id.pet_list);
+        previous = findViewById(R.id.prev_recycler);
 
         //DATABASE REFERENCE ASSIGNMENT
         databaseReference = FirebaseDatabase.getInstance().getReference("Services");
@@ -168,17 +171,8 @@ public class Home extends AppCompatActivity {
             }
         });
 
-        //RecyclerView para sa mga pets eme
-        RecyclerView.LayoutManager petLayout = new LinearLayoutManager(Home.this, RecyclerView.VERTICAL, false);
-        pets.setLayoutManager(petLayout);
-        pet_queue = new FirebaseRecyclerOptions.Builder<pets_and_users_details_model>().setQuery(petReference.child(Objects.requireNonNull(currentUser.getDisplayName())), pets_and_users_details_model.class)
-                .build();
-        registered_pets_adapter pets_adapter = new registered_pets_adapter(pet_queue);
-        pets.setAdapter(pets_adapter);
-        pets_adapter.startListening();
-
         //eto naman mag-check kapag may appointment, mawawala si set appointment at lalabas si cancel
-        ownerReference.child(currentUser.getDisplayName()).child("Booking").addValueEventListener(new ValueEventListener() {
+        ownerReference.child(Objects.requireNonNull(currentUser.getDisplayName())).child("Booking").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
@@ -264,5 +258,28 @@ public class Home extends AppCompatActivity {
                 pd.dismiss();
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        //RecyclerView para sa mga pets eme
+        RecyclerView.LayoutManager petLayout = new LinearLayoutManager(Home.this, RecyclerView.VERTICAL, false);
+        pets.setLayoutManager(petLayout);
+        pet_queue = new FirebaseRecyclerOptions.Builder<pets_and_users_details_model>().setQuery(petReference.child(Objects.requireNonNull(currentUser.getDisplayName())), pets_and_users_details_model.class)
+                .build();
+        registered_pets_adapter pets_adapter = new registered_pets_adapter(pet_queue);
+        pets.setAdapter(pets_adapter);
+        pets_adapter.startListening();
+
+        //RecyclerView para sa mga previous appointments
+        RecyclerView.LayoutManager prevLayout = new LinearLayoutManager(Home.this, RecyclerView.VERTICAL, false);
+        previous.setLayoutManager(prevLayout);
+        prev_queue = new FirebaseRecyclerOptions.Builder<pets_and_users_details_model>().setQuery(ownerReference.child(currentUser.getDisplayName()).child("Previous Bookings"), pets_and_users_details_model.class)
+                .build();
+        previous_bookings_adapter prev_adapter = new previous_bookings_adapter(prev_queue);
+        previous.setAdapter(prev_adapter);
+        prev_adapter.startListening();
+
     }
 }

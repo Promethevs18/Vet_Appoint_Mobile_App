@@ -2,12 +2,12 @@ package com.example.vetclinicapp.models;
 
 public class pets_and_users_details_model {
     String ownerContact, ownerEmail, owner, petAddress, petAge,
-            petBirth, petImage, petName, breed, sched_date;
+            petBirth, petImage, petName, breed, sched_date, services, patients;
 
     public pets_and_users_details_model() {
     }
 
-    public pets_and_users_details_model(String ownerContact, String ownerEmail, String owner, String petAddress, String petAge, String petBirth, String petImage, String petName, String breed, String sched_date) {
+    public pets_and_users_details_model(String ownerContact, String ownerEmail, String owner, String petAddress, String petAge, String petBirth, String petImage, String petName, String breed, String sched_date, String services, String patients) {
         this.ownerContact = ownerContact;
         this.ownerEmail = ownerEmail;
         this.owner = owner;
@@ -18,6 +18,8 @@ public class pets_and_users_details_model {
         this.petName = petName;
         this.breed = breed;
         this.sched_date = sched_date;
+        this.services = services;
+        this.patients = patients;
     }
 
     public String getOwnerContact() {
@@ -99,5 +101,20 @@ public class pets_and_users_details_model {
     public void setSched_date(String sched_date) {
         this.sched_date = sched_date;
     }
-}
 
+    public String getServices() {
+        return services;
+    }
+
+    public void setServices(String services) {
+        this.services = services;
+    }
+
+    public String getPatients() {
+        return patients;
+    }
+
+    public void setPatients(String patients) {
+        this.patients = patients;
+    }
+}
