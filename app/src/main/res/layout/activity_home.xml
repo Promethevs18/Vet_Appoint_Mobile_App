@@ -238,7 +238,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/prev_recycler"
             android:layout_width="0dp"
-            android:layout_height="231dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             app:layout_constraintEnd_toEndOf="@+id/pet_list"
             app:layout_constraintStart_toStartOf="@+id/pet_list"

@@ -160,6 +160,12 @@ public class Pet_Adder extends AppCompatActivity {
                     ownerName.setText(Objects.requireNonNull(detailsModel).getOwner());
                     ownerEmail.setText(Objects.requireNonNull(detailsModel).getOwnerEmail());
                     ownerPhone.setText(Objects.requireNonNull(detailsModel).getOwnerContact());
+                } else {
+                    AlertDialog.Builder firstTime = new AlertDialog.Builder(Pet_Adder.this);
+                    firstTime.setCancelable(true);
+                    firstTime.setTitle("Your information has not yet been recorded");
+                    firstTime.setMessage("As a first time user, you must upload your phone number in our system. To do this, go to the home page, click on your profile icon on the top-right corner of the screen");
+                    firstTime.show();
                 }
 
             }
@@ -178,7 +184,7 @@ public class Pet_Adder extends AppCompatActivity {
 
                 if (setName.getText().toString().isEmpty() || setAddress.getText().toString().isEmpty() ||
                         setBreed.getText().toString().isEmpty() || selectedDate.isEmpty() || ageDate.isEmpty() ||
-                        imageLink.isEmpty()) {
+                        imageLink == null) {
                     AlertDialog.Builder gawa = new AlertDialog.Builder(Pet_Adder.this);
                     gawa.setTitle("Some fields are empty");
                     gawa.setMessage("All pet information are required. Make sure you have uploaded a profile picture by clicking on the icon above, or provided data in the fields required");
@@ -200,7 +206,7 @@ public class Pet_Adder extends AppCompatActivity {
                     mapa.put("petAge", setAge.getText().toString());
                     mapa.put("petImage", imageLink);
                     mapa.put("ownerContact", ownerPhone.getText().toString());
-                    mapa.put("ownerName", ownerName.getText().toString());
+                    mapa.put("owner", ownerName.getText().toString());
                     mapa.put("ownerEmail", ownerEmail.getText().toString());
                     mapa.put("breed", setBreed.getText().toString());
 

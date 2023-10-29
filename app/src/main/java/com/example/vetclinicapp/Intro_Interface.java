@@ -31,7 +31,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-import com.google.firebase.database.FirebaseDatabase;
 import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;
 
@@ -82,9 +81,6 @@ public class Intro_Interface extends AppCompatActivity {
 
 
         //CODE BELOW ARE THE FUNCTIONS
-
-        //Below is the persistence for offline capability
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
         //This is for the google account sign in option
         signInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)

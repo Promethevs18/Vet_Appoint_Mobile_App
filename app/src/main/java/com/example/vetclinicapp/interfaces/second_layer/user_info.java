@@ -133,7 +133,7 @@ public class user_info extends AppCompatActivity {
                 phone_number.setFocusable(false);
                 //below we are declaring a hashmap na magso-store ng information ni user
                 HashMap<String, Object> user_mapa = new HashMap<>();
-                user_mapa.put("ownerName", user.getDisplayName());
+                user_mapa.put("owner", user.getDisplayName());
                 user_mapa.put("ownerEmail", user.getEmail());
                 user_mapa.put("ownerContact", phone_number.getText().toString());
 
@@ -181,9 +181,11 @@ public class user_info extends AppCompatActivity {
                 if (user != null) {
                     GoogleSignInOptions signInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
                     GoogleSignInClient signClient = GoogleSignIn.getClient(user_info.this, signInOptions);
+                    FirebaseAuth.getInstance().signOut();
                     signClient.signOut();
                     Intent gohome = new Intent(user_info.this, Intro_Interface.class);
                     startActivity(gohome);
+                    user_info.this.finish();
                     Toast.makeText(user_info.this, "You have successfully logged out", Toast.LENGTH_SHORT).show();
                 }
             }

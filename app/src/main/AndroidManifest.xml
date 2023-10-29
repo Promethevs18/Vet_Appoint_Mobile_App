@@ -14,6 +14,7 @@
 
     <application
         android:allowBackup="true"
+        android:name=".persistence"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@drawable/logo1"
@@ -39,9 +40,6 @@
             android:exported="false" />
         <activity
             android:name=".interfaces.service_info"
-            android:exported="false" />
-        <activity
-            android:name=".interfaces.first_layer.Admin_act"
             android:exported="false" />
         <activity
             android:name=".interfaces.second_layer.Found_Pet_Details"
