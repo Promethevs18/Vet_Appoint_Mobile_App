@@ -53,7 +53,7 @@ public class Pet_Adder extends AppCompatActivity {
     //CircleImageView
     CircleImageView set_profile_image;
     //EditText
-    EditText setName, setAddress, setBirthday, setAge, setBreed;
+    EditText setName, setBirthday, setAge, setBreed, setBarangay, setCity, setRegion, setSpec;
     //TextView
     TextView ownerName, ownerEmail, ownerPhone;
     //Button
@@ -63,7 +63,7 @@ public class Pet_Adder extends AppCompatActivity {
     //DatePickerDialog
     DatePickerDialog datePicker;
     //Strings
-    String selectedDate, ageDate, imageLink;
+    String selectedDate, ageDate, imageLink, completeAddress;
 
     //Firebase Database Reference
     DatabaseReference putData;
@@ -89,10 +89,13 @@ public class Pet_Adder extends AppCompatActivity {
 
         //EDIT TEXTS
         setName = findViewById(R.id.set_pet_name);
-        setAddress = findViewById(R.id.set_pet_add);
         setBirthday = findViewById(R.id.set_pet_birth);
         setAge = findViewById(R.id.set_pet_age);
         setBreed = findViewById(R.id.set_breed);
+        setBarangay = findViewById(R.id.barangayAdd);
+        setCity = findViewById(R.id.city);
+        setRegion = findViewById(R.id.region);
+        setSpec = findViewById(R.id.specAddress);
 
         //TEXTVIEWS
         ownerName = findViewById(R.id.owner_name_display);
@@ -181,8 +184,7 @@ public class Pet_Adder extends AppCompatActivity {
             public void onClick(View view) {
 
                 //if condition para i-check kung lahat ng info ay meron
-
-                if (setName.getText().toString().isEmpty() || setAddress.getText().toString().isEmpty() ||
+                if (setName.getText().toString().isEmpty() ||
                         setBreed.getText().toString().isEmpty() || selectedDate.isEmpty() || ageDate.isEmpty() ||
                         imageLink == null) {
                     AlertDialog.Builder gawa = new AlertDialog.Builder(Pet_Adder.this);
@@ -198,12 +200,17 @@ public class Pet_Adder extends AppCompatActivity {
                     pd.setMessage("Uploading information to the database. Please wait...");
                     pd.show();
 
+                    //for the complete address
+                    completeAddress = String.format("%s, %s, %s, %s", setSpec.getText().toString(), setBarangay.getText().toString(), setCity.getText().toString(), setRegion.getText().toString());
+
                     //we are using a hashmap as our data container
                     HashMap<String, Object> mapa = new HashMap<>();
                     mapa.put("petName", setName.getText().toString());
-                    mapa.put("petAddress", setAddress.getText().toString());
+                    mapa.put("petAddress", completeAddress);
                     mapa.put("petBirth", setBirthday.getText().toString());
                     mapa.put("petAge", setAge.getText().toString());
+                    mapa.put("city", setCity.getText().toString());
+                    mapa.put("region", setRegion.getText().toString());
                     mapa.put("petImage", imageLink);
                     mapa.put("ownerContact", ownerPhone.getText().toString());
                     mapa.put("owner", ownerName.getText().toString());

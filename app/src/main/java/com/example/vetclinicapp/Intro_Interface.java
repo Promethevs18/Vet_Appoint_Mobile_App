@@ -134,7 +134,7 @@ public class Intro_Interface extends AppCompatActivity {
 
 
             } catch (ApiException e) {
-                alert.dismiss();
+//                alert.dismiss();
                 Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }
