@@ -6,7 +6,7 @@ plugins {
 android {
     signingConfigs {
         release {
-            storeFile file('A:/Documents/All_Programming_Files/Android Keys/Primary.jks')
+            storeFile file('A:\\Documents\\All_Programming_Files\\Android Keys\\Deployment.jks')
             storePassword 'phony112'
             keyAlias 'vonnie'
             keyPassword 'phony112'
@@ -26,6 +26,12 @@ android {
     }
 
     buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            multiDexEnabled true
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt')
+        }
         debug {
             signingConfig signingConfigs.debug
             minifyEnabled false
@@ -61,4 +67,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-auth:20.7.0'
     implementation 'com.google.firebase:firebase-auth-ktx:22.1.2'
     implementation(platform('com.google.firebase:firebase-bom:32.3.1'))
+    implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.0"))
+    implementation 'com.google.android.libraries.places:places:3.3.0'
+
 }

@@ -182,14 +182,26 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="12dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:text="Delete Pet Information"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/petNotes" />
+
+        <TextView
+            android:id="@+id/petNotes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/mukta_medium"
+            android:text="Notes will appear here"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="@+id/contact_phone"
+            app:layout_constraintStart_toStartOf="@+id/owner_phone"
             app:layout_constraintTop_toBottomOf="@+id/pet_qr" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

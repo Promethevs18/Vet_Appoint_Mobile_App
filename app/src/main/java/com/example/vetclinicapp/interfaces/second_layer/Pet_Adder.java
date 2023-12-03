@@ -9,6 +9,8 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -24,6 +26,12 @@ import com.example.vetclinicapp.interfaces.third_layer.QR_Shower;
 import com.example.vetclinicapp.models.pets_and_users_details_model;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.AutocompletePrediction;
+import com.google.android.libraries.places.api.model.AutocompleteSessionToken;
+import com.google.android.libraries.places.api.model.TypeFilter;
+import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRequest;
+import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -40,6 +48,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.UUID;
@@ -53,7 +62,7 @@ public class Pet_Adder extends AppCompatActivity {
     //CircleImageView
     CircleImageView set_profile_image;
     //EditText
-    EditText setName, setBirthday, setAge, setBreed, setBarangay, setCity, setRegion, setSpec;
+    EditText setName, setBirthday, setAge, setBreed, setBarangay, setCity, setRegion, setSpec, setNote;
     //TextView
     TextView ownerName, ownerEmail, ownerPhone;
     //Button
@@ -79,11 +88,17 @@ public class Pet_Adder extends AppCompatActivity {
     // Uri indicates, where the image will be picked from
     private Uri filePath;
 
+    //Places API
+    PlacesClient placesClient;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet_adder);
 
+        Places.initialize(this, "AIzaSyCkF5-bPHh1DsHkY2Ho8sLzpyXrO7j6-is");
+
+        placesClient = Places.createClient(this);
         //CIRCLEIMAGEVIEW
         set_profile_image = findViewById(R.id.set_pet_image);
 
@@ -96,6 +111,8 @@ public class Pet_Adder extends AppCompatActivity {
         setCity = findViewById(R.id.city);
         setRegion = findViewById(R.id.region);
         setSpec = findViewById(R.id.specAddress);
+        setNote = findViewById(R.id.notes);
+
 
         //TEXTVIEWS
         ownerName = findViewById(R.id.owner_name_display);
@@ -123,7 +140,31 @@ public class Pet_Adder extends AppCompatActivity {
         //Firebase Storage
         imageStorage = FirebaseStorage.getInstance().getReference();
 
+
         //BELOW IS WHERE IS THE MAGIC HAPPENS
+
+
+        //This is for the autocomplete section
+        // Set up the TextWatcher on setCity EditText
+        setCity.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int start, int before, int count) {
+                // Not used, but required method
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
+                // Respond to text changes and perform autocomplete request
+                performAutocompleteRequest(charSequence.toString(), setCity);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                // Not used, but required method
+
+            }
+        });
+
 
         //using the calendar picker when the set Birthday is clicked
         setBirthday.setOnClickListener(new View.OnClickListener() {
@@ -185,7 +226,7 @@ public class Pet_Adder extends AppCompatActivity {
 
                 //if condition para i-check kung lahat ng info ay meron
                 if (setName.getText().toString().isEmpty() ||
-                        setBreed.getText().toString().isEmpty() || selectedDate.isEmpty() || ageDate.isEmpty() ||
+                        setBreed.getText().toString().isEmpty() || selectedDate.isEmpty() || ageDate.isEmpty() || setNote.getText().toString().isEmpty() ||
                         imageLink == null) {
                     AlertDialog.Builder gawa = new AlertDialog.Builder(Pet_Adder.this);
                     gawa.setTitle("Some fields are empty");
@@ -216,6 +257,7 @@ public class Pet_Adder extends AppCompatActivity {
                     mapa.put("owner", ownerName.getText().toString());
                     mapa.put("ownerEmail", ownerEmail.getText().toString());
                     mapa.put("breed", setBreed.getText().toString());
+                    mapa.put("notes", setNote.getText().toString());
 
                     //passing the data to our realtime database, and pushing a condition that will check if it is passed successfully
                     putData.child(Objects.requireNonNull(user.getDisplayName())).child(setName.getText().toString()).updateChildren(mapa).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -340,5 +382,35 @@ public class Pet_Adder extends AppCompatActivity {
                 progressDialog.setMessage("Uploaded " + (int) progress + "%");
             });
         }
+    }
+
+    // Modify the performAutocompleteRequest method to update the hint based on suggestions
+    private void performAutocompleteRequest(String query, EditText editText) {
+        AutocompleteSessionToken token = AutocompleteSessionToken.newInstance();
+        FindAutocompletePredictionsRequest request = FindAutocompletePredictionsRequest.builder()
+                .setCountries("PH")
+                .setTypeFilter(TypeFilter.CITIES)
+                .setSessionToken(token)
+                .setQuery(query)
+                .build();
+
+        placesClient.findAutocompletePredictions(request)
+                .addOnSuccessListener(response -> {
+                    List<AutocompletePrediction> predictions = response.getAutocompletePredictions();
+                    if (!predictions.isEmpty()) {
+                        // Get the closest prediction and update the hint
+                        AutocompletePrediction closestPrediction = predictions.get(0);
+                        String[] onlyCity = closestPrediction.getFullText(null).toString().split(", ");
+                        CharSequence hint = onlyCity[0];
+                        Toast.makeText(this, hint.toString(), Toast.LENGTH_SHORT).show();
+                    } else {
+                        // No predictions, reset the hint
+                        editText.setHint("Type a city");
+                    }
+                })
+                .addOnFailureListener(exception -> {
+                    // Handle error
+                    Toast.makeText(this, "Autocomplete request failed: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
+                });
     }
 }

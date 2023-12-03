@@ -38,9 +38,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Found_Pet_Details extends AppCompatActivity {
 
+
     //Declarations of different variables
     //textviews
-    TextView petName, petAge, petAddress, petBirth, ownerName, ownerEmail, ownerPhone;
+    TextView petName, petAge, petAddress, petBirth, ownerName, ownerEmail, ownerPhone, petNotes;
 
     //profile image
     CircleImageView petImage;
@@ -79,6 +80,7 @@ public class Found_Pet_Details extends AppCompatActivity {
             ownerName = findViewById(R.id.owner_name);
             ownerEmail = findViewById(R.id.owner_email);
             ownerPhone = findViewById(R.id.owner_phone);
+            petNotes = findViewById(R.id.petNotes);
 
             //circleimageview
             petImage = findViewById(R.id.pet_pic);
@@ -134,6 +136,7 @@ public class Found_Pet_Details extends AppCompatActivity {
                     ownerEmail.setText(Objects.requireNonNull(petModel.getOwnerEmail()));
                     ownerName.setText(Objects.requireNonNull(petModel.getOwner()));
                     ownerPhone.setText(Objects.requireNonNull(petModel.getOwnerContact()));
+                    petNotes.setText(Objects.requireNonNull(petModel.getNotes()));
 
                     //using Picasso to load petProfile
                     Picasso.get().load(petModel.getPetImage()).into(petImage);
