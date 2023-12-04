@@ -12,6 +12,8 @@ import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -46,6 +48,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -62,7 +65,10 @@ public class Pet_Adder extends AppCompatActivity {
     //CircleImageView
     CircleImageView set_profile_image;
     //EditText
-    EditText setName, setBirthday, setAge, setBreed, setBarangay, setCity, setRegion, setSpec, setNote;
+    EditText setName, setBirthday, setAge, setBreed, setBarangay, setRegion, setSpec, setNote;
+
+    //AutoCompleteTextView
+    AutoCompleteTextView setCity;
     //TextView
     TextView ownerName, ownerEmail, ownerPhone;
     //Button
@@ -398,14 +404,16 @@ public class Pet_Adder extends AppCompatActivity {
                 .addOnSuccessListener(response -> {
                     List<AutocompletePrediction> predictions = response.getAutocompletePredictions();
                     if (!predictions.isEmpty()) {
-                        // Get the closest prediction and update the hint
-                        AutocompletePrediction closestPrediction = predictions.get(0);
-                        String[] onlyCity = closestPrediction.getFullText(null).toString().split(", ");
-                        CharSequence hint = onlyCity[0];
-                        Toast.makeText(this, hint.toString(), Toast.LENGTH_SHORT).show();
-                    } else {
-                        // No predictions, reset the hint
-                        editText.setHint("Type a city");
+                        List<String> predictionStrings = new ArrayList<>();
+                        for (AutocompletePrediction prediction : predictions) {
+                            String[] selectedString = prediction.getFullText(null).toString().split(", ");
+                            predictionStrings.add(selectedString[0]);
+                        }
+                        // Create and set the adapter for AutoCompleteTextView
+                        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, predictionStrings);
+                        setCity.setAdapter(adapter);
+                        // Show all predictions in the dropdown
+                        setCity.showDropDown();
                     }
                 })
                 .addOnFailureListener(exception -> {

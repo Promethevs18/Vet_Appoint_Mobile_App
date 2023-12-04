@@ -201,7 +201,7 @@
                 app:layout_constraintStart_toStartOf="@+id/guideline3"
                 app:layout_constraintTop_toTopOf="@+id/specAddress" />
 
-            <EditText
+            <AutoCompleteTextView
                 android:id="@+id/city"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -209,6 +209,7 @@
                 android:ems="10"
                 android:hint="City"
                 android:inputType="text|textCapWords"
+                android:minHeight="48dp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline3"
                 app:layout_constraintStart_toStartOf="@+id/specAddress"
                 app:layout_constraintTop_toBottomOf="@+id/specAddress" />
@@ -221,6 +222,7 @@
                 android:ems="10"
                 android:hint="Region"
                 android:inputType="text"
+                android:minHeight="48dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/guideline3"
                 app:layout_constraintTop_toBottomOf="@+id/specAddress" />
@@ -233,6 +235,7 @@
                 android:ems="10"
                 android:hint="Any notes about the pet?"
                 android:inputType="text"
+                android:minHeight="48dp"
                 app:layout_constraintEnd_toEndOf="@+id/set_pet_age"
                 app:layout_constraintStart_toStartOf="@+id/set_pet_birth"
                 app:layout_constraintTop_toBottomOf="@+id/set_pet_birth" />

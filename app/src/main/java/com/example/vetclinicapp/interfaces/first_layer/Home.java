@@ -178,11 +178,27 @@ public class Home extends AppCompatActivity {
                 if (snapshot.exists()) {
                     pets_and_users_details_model getDate = snapshot.getValue(pets_and_users_details_model.class);
                     booking_date = Objects.requireNonNull(getDate).getSched_date();
-                    book.setVisibility(View.GONE);
-                    cancel.setVisibility(View.VISIBLE);
+                    bookings.child(getDate.getSched_date()).child(currentUser.getDisplayName()).child("status").addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            String status = snapshot.getValue(String.class);
+                            if (Objects.equals(status, "finished")) {
+                                book.setVisibility(View.VISIBLE);
+                                cancel.setVisibility(View.GONE);
+                            } else {
+                                book.setVisibility(View.GONE);
+                                cancel.setVisibility(View.VISIBLE);
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
                 } else {
-                    book.setVisibility(View.VISIBLE);
-                    cancel.setVisibility(View.GONE);
+                    Toast.makeText(Home.this, "An error occurred during initialization. Close the app and try again", Toast.LENGTH_SHORT).show();
                 }
             }
 

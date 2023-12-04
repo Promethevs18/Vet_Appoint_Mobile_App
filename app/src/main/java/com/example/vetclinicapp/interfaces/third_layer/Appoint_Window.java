@@ -302,6 +302,7 @@ public class Appoint_Window extends AppCompatActivity {
                 booking_map.put("imageUrl", Objects.requireNonNull(current_user.getPhotoUrl()).toString());
                 booking_map.put("address", address);
                 booking_map.put("contact_num", contact_num);
+                booking_map.put("status", "appointed");
 
                 HashMap<String, Object> bookDeets = new HashMap<>();
                 bookDeets.put("sched_date", date.getText().toString());
