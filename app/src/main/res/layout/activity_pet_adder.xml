@@ -176,7 +176,7 @@
                 app:layout_constraintStart_toStartOf="@+id/owner_name_display"
                 app:layout_constraintTop_toBottomOf="@+id/owner_phone_display" />
 
-            <EditText
+            <AutoCompleteTextView
                 android:id="@+id/set_breed"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

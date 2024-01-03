@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">Vet Clinic App</string>
+
+    <array name="hayop_breeds">
+        <item>Golden Retriever</item>
+        <item>German Shepherd</item>
+        <item>Labrador Retriever</item>
+        <item>Bulldog</item>
+        <item>Beagle</item>
+        <item>Poodle</item>
+        <item>Boxer</item>
+        <item>Husky</item>
+        <item>Persian</item>
+        <item>Siamese</item>
+        <item>Maine Coon</item>
+        <item>Ragdoll</item>
+        <item>Sphynx</item>
+        <item>Bengal</item>
+    </array>
+
 </resources>

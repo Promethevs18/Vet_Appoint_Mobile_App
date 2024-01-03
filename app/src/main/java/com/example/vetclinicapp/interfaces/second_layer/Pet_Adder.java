@@ -12,6 +12,7 @@ import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -65,10 +66,10 @@ public class Pet_Adder extends AppCompatActivity {
     //CircleImageView
     CircleImageView set_profile_image;
     //EditText
-    EditText setName, setBirthday, setAge, setBreed, setBarangay, setRegion, setSpec, setNote;
+    EditText setName, setBirthday, setAge, setBarangay, setRegion, setSpec, setNote;
 
     //AutoCompleteTextView
-    AutoCompleteTextView setCity;
+    AutoCompleteTextView setCity, setBreed;
     //TextView
     TextView ownerName, ownerEmail, ownerPhone;
     //Button
@@ -171,7 +172,18 @@ public class Pet_Adder extends AppCompatActivity {
             }
         });
 
+        //This is for the autocomplete of the pet breeds
+        String[] mgaBreeds = getResources().getStringArray(R.array.hayop_breeds);
+        ArrayAdapter<String> breedAdapter = new ArrayAdapter<>(this, com.google.android.material.R.layout.support_simple_spinner_dropdown_item, mgaBreeds);
+        setBreed.setAdapter(breedAdapter);
 
+        setBreed.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String pinili = String.valueOf(parent.getSelectedItem());
+                Toast.makeText(Pet_Adder.this, pinili, Toast.LENGTH_SHORT).show();
+            }
+        });
         //using the calendar picker when the set Birthday is clicked
         setBirthday.setOnClickListener(new View.OnClickListener() {
             @Override
