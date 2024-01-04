@@ -1,5 +1,6 @@
 package com.example.vetclinicapp.adapters;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.vetclinicapp.R;
+import com.example.vetclinicapp.interfaces.third_layer.Prev_Appointment;
 import com.example.vetclinicapp.models.pets_and_users_details_model;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -22,6 +24,15 @@ public class previous_bookings_adapter extends FirebaseRecyclerAdapter<pets_and_
     @Override
     protected void onBindViewHolder(@NonNull previous_bookings_adapter.myViewHolder holder, int position, @NonNull pets_and_users_details_model model) {
         holder.setData(model);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pets_and_users_details_model petsModels = getSnapshots().get(holder.getAbsoluteAdapterPosition());
+                Intent goPrev = new Intent(holder.itemView.getContext(), Prev_Appointment.class);
+                goPrev.putExtra("Date", petsModels.getSched_date());
+                holder.itemView.getContext().startActivity(goPrev);
+            }
+        });
     }
 
     @NonNull

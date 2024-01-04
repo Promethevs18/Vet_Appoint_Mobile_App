@@ -13,8 +13,8 @@
     <uses-permission-sdk-23 android:name="android.permission.READ_CALENDAR" />
 
     <application
-        android:allowBackup="true"
         android:name=".persistence"
+        android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@drawable/logo1"
@@ -23,6 +23,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.VetClinicApp"
         tools:targetApi="31">
+        <activity
+            android:name=".interfaces.third_layer.Prev_Appointment"
+            android:exported="false" />
         <activity
             android:name=".interfaces.third_layer.Add_feedback"
             android:exported="false" />
@@ -52,6 +55,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

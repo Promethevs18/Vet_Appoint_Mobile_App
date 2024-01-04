@@ -180,8 +180,8 @@ public class Pet_Adder extends AppCompatActivity {
         setBreed.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String pinili = String.valueOf(parent.getSelectedItem());
-                Toast.makeText(Pet_Adder.this, pinili, Toast.LENGTH_SHORT).show();
+                String pinili = String.valueOf(parent.getItemAtPosition(position));
+                setBreed.setText(pinili);
             }
         });
         //using the calendar picker when the set Birthday is clicked

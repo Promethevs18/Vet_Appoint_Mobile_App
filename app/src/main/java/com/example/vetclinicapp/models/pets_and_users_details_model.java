@@ -2,7 +2,29 @@ package com.example.vetclinicapp.models;
 
 public class pets_and_users_details_model {
     String ownerContact, ownerEmail, owner, petAddress, petAge,
-            petBirth, petImage, petName, breed, sched_date, services, patients, notes;
+            petBirth, petImage, petName, breed, sched_date, services, patients, notes, imageUrl, sched_time, status;
+
+    public pets_and_users_details_model(String ownerContact, String ownerEmail, String owner, String petAddress, String petAge, String petBirth, String petImage, String petName, String breed, String sched_date, String services, String patients, String notes, String imageUrl, String sched_time, String status) {
+        this.ownerContact = ownerContact;
+        this.ownerEmail = ownerEmail;
+        this.owner = owner;
+        this.petAddress = petAddress;
+        this.petAge = petAge;
+        this.petBirth = petBirth;
+        this.petImage = petImage;
+        this.petName = petName;
+        this.breed = breed;
+        this.sched_date = sched_date;
+        this.services = services;
+        this.patients = patients;
+        this.notes = notes;
+        this.imageUrl = imageUrl;
+        this.sched_time = sched_time;
+        this.status = status;
+    }
+
+    public pets_and_users_details_model() {
+    }
 
     public String getOwnerContact() {
         return ownerContact;
@@ -100,30 +122,35 @@ public class pets_and_users_details_model {
         this.patients = patients;
     }
 
-    public pets_and_users_details_model() {
-    }
-
-    public pets_and_users_details_model(String ownerContact, String ownerEmail, String owner, String petAddress, String petAge, String petBirth, String petImage, String petName, String breed, String sched_date, String services, String patients, String notes) {
-        this.ownerContact = ownerContact;
-        this.ownerEmail = ownerEmail;
-        this.owner = owner;
-        this.petAddress = petAddress;
-        this.petAge = petAge;
-        this.petBirth = petBirth;
-        this.petImage = petImage;
-        this.petName = petName;
-        this.breed = breed;
-        this.sched_date = sched_date;
-        this.services = services;
-        this.patients = patients;
-        this.notes = notes;
-    }
-
     public String getNotes() {
         return notes;
     }
 
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public String getSched_time() {
+        return sched_time;
+    }
+
+    public void setSched_time(String sched_time) {
+        this.sched_time = sched_time;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
